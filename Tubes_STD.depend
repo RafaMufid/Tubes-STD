@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1735386181 source:c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\main.cpp
+	<iostream>
+	"graph.h"
+
+1735382201 source:c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\graph.cpp
+	"graph.h"
+
+1735382385 c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\graph.h
+	<iostream>
+
