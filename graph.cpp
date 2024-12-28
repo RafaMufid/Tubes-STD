@@ -1,4 +1,6 @@
+#include <iostream>
 #include "graph.h"
+
 
 void createVertex(char newVertexID, adrVertex &v){
     v = new vertex;
@@ -114,4 +116,71 @@ int countVertex(graph &G){
         v = nextVertex(v);
     }
     return jmlVertex;
+}
+
+void findShortestPath(graph &G, char start, char end) {
+    map<char, int> distances; // Menyimpan jarak minimum ke setiap simpul
+    map<char, char> predecessors; // Menyimpan jalur sebelumnya
+    map<char, bool> visited; // Menyimpan status kunjungan
+
+    // Inisialisasi semua simpul
+    adrVertex v = firstVertex(G);
+    while (v != NULL) {
+        distances[idVertex(v)] = INT_MAX; // Set jarak awal menjadi tak hingga
+        predecessors[idVertex(v)] = '\0';
+        visited[idVertex(v)] = false;
+        v = nextVertex(v);
+    }
+
+    // Jarak ke simpul awal adalah 0
+    distances[start] = 0;
+
+    for (int i = 0; i < countVertex(G); ++i) {
+        // Cari simpul dengan jarak terpendek yang belum dikunjungi
+        char currentVertex = '\0';
+        int minDistance = INT_MAX;
+        for (auto &pair : distances) {
+            if (!visited[pair.first] && pair.second < minDistance) {
+                minDistance = pair.second;
+                currentVertex = pair.first;
+            }
+        }
+
+        if (currentVertex == '\0') {
+            break; // Tidak ada simpul yang dapat dijangkau lagi
+        }
+
+        visited[currentVertex] = true;
+
+        // Update jarak ke simpul tetangga
+        adrVertex currentV = searchVertexID(G, currentVertex);
+        adrEdge e = firstEdge(currentV);
+        while (e != NULL) {
+            if (!isBanjir(e)) { // Hindari jalur banjir
+                int newDistance = distances[currentVertex] + weight(e);
+                if (newDistance < distances[destVertexID(e)]) {
+                    distances[destVertexID(e)] = newDistance;
+                    predecessors[destVertexID(e)] = currentVertex;
+                }
+            }
+            e = nextEdge(e);
+        }
+    }
+
+    // Cetak hasil jalur terpendek
+    if (distances[end] == INT_MAX) {
+        cout << "Tidak ada jalur dari " << start << " ke " << end << " yang tidak banjir." << endl;
+        return;
+    }
+
+    cout << "Jarak terpendek dari " << start << " ke " << end << " adalah: " << distances[end] << endl;
+    cout << "Jalur: ";
+
+    // Rekonstruksi jalur
+    string path = "";
+    for (char at = end; at != '\0'; at = predecessors[at]) {
+        path = at + path;
+    }
+
+    cout << path << endl;
 }
