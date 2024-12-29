@@ -31,20 +31,32 @@ int main()
                 break;
             }
             case 2: {
-                char inputVertexID, tujuan, inputBanjir;
-                int bobot;
+                while (true){
+                    char inputVertexID, tujuan, inputBanjir;
+                    int bobot;
 
-                cout << "Masukkan ID Simpul: ";
-                cin >> inputVertexID;
-                if (searchVertexID(G, inputVertexID) != NULL) {
-                    cout << "Masukkan Tujuan dan Bobot: ";
-                    cin >> tujuan;
-                    cin >> bobot;
-                    cout << "Apakah jalur ini banjir? (Y/N): ";
-                    cin >> inputBanjir;
-                    addEdge(G, inputVertexID, tujuan, bobot, toupper(inputBanjir) == 'Y');
-                } else {
-                    cout << "Simpul tidak ditemukan. Tambahkan simpul terlebih dahulu.\n";
+                    cout << "Masukkan ID Simpul: ";
+                    cin >> inputVertexID;
+
+                    if(!isalpha(inputVertexID)){
+                        break;
+                    }
+                    inputVertexID = toupper(inputVertexID);
+
+                    if (searchVertexID(G, inputVertexID) != NULL) {
+                        cout << "Masukkan Tujuan dan Bobot: ";
+                        cin >> tujuan;
+                        if(!isalpha(tujuan)){
+                            cout << "Input tujuan tidak valid. Kembali ke menu.\n";
+                            break;
+                        }
+                        cin >> bobot;
+                        cout << "Apakah jalur ini banjir? (Y/N): ";
+                        cin >> inputBanjir;
+                        addEdge(G, inputVertexID, tujuan, bobot, toupper(inputBanjir) == 'Y');
+                    } else {
+                        cout << "Simpul tidak ditemukan. Tambahkan simpul terlebih dahulu.\n";
+                    }
                 }
                 break;
             }
@@ -63,7 +75,7 @@ int main()
             }
             case 5: {
                 isRunning = false;
-                cout << "Keluar dari program.\n";
+                cout << "Terimakasih^^.\n";
                 break;
             }
             default: {

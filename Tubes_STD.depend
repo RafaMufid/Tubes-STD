@@ -1,13 +1,18 @@
 # depslib dependency file v1.0
-1735386181 source:c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\main.cpp
+1735405096 source:c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\main.cpp
 	<iostream>
 	"graph.h"
 
-1735382201 source:c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\graph.cpp
+1735405096 source:c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\graph.cpp
+	<iostream>
 	"graph.h"
 
-1735382385 c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\graph.h
+1735405096 c:\users\asus\onedrive\documents\rafa mufid\kuliah\semester 3\praktikum std\tubes_std\graph.h
 	<iostream>
+	<map>
+	<set>
+	<climits>
+	<stack>
 
 1735402588 source:c:\users\muhammad zaky a\documents\github\tubes-std\graph.cpp
 	"graph.h"
